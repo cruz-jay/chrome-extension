@@ -1,0 +1,30 @@
+{
+  "manifest_version": 3,
+  "author": "Jay Cruz",
+  "name": "File-Me-File",
+  "version": "1.0",
+  "description": "A simple Chrome extension, for file conversion",
+  "permissions": [],
+  "host_permissions": ["http://localhost:32300/"],
+  "icons": {
+    "16": "./assets/icon_2_bg.png",
+    "48": "./assets/icon_2_bg.png",
+    "128": "./assets/icon_2_bg.png"
+  },
+  "action": {
+    "default_popup": "index.html",
+    "default_title": "File Converter",
+    "default_icon": {
+      "16": "./assets/icon.png",
+      "48": "./assets/icon.png",
+      "128": "./assets/icon.png"
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["main.js"],
+      "css": ["main.css"]
+    }
+  ]
+}

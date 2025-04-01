@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MP4 to WebM Converter</title>
+    <link rel="stylesheet" href="./output.css" />
+    <style>
+      /* Chrome extension specific styles */
+      body {
+        width: 450px;
+        height: auto;
+        min-height: 400px;
+        max-height: 600px;
+        overflow-y: auto;
+        margin: 0;
+        padding: 0;
+      }
+      /* Hide scrollbar for Chrome, Safari and Opera */
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #f1f1f1;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #c5c5c5;
+        border-radius: 4px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #a0a0a0;
+      }
+    </style>
+  </head>
+  <body class="bg-gray-50">
+    <div class="p-4 bg-white shadow-sm">
+      <!-- Header - Made more compact -->
+      <div class="flex flex-col items-center mb-4">
+        <img src="./assets/icon.png" alt="logo" class="w-12 h-12 mb-1" />
+        <h1 class="text-xl font-bold text-gray-800">File-me-File</h1>
+        <div class="flex items-center space-x-2 mt-1">
+          <span class="text-sm font-medium text-gray-500">MP4</span>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-4 w-4 text-primary-500"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor">
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M14 5l7 7m0 0l-7 7m7-7H3" />
+          </svg>
+          <span class="text-sm font-medium text-primary-600">WebM</span>
+        </div>
+      </div>
+
+      <!-- Drop Area - More compact version -->
+      <div
+        id="drop-area"
+        class="border-2 border-dashed border-gray-300 rounded-lg p-4 mb-4 text-center transition-all duration-300 hover:border-primary-400 hover:bg-primary-50 group">
+        <div class="mb-2">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-10 w-10 mx-auto text-gray-400 group-hover:text-primary-400 transition-colors duration-300"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor">
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+          </svg>
+        </div>
+        <p class="text-gray-600 mb-2 text-sm">Drag & drop MP4 files here or</p>
+        <input
+          type="file"
+          id="fileInput"
+          accept="video/mp4"
+          multiple
+          style="display: none" />
+        <button
+          class="bg-primary-500 hover:bg-primary-600 text-white font-medium py-1.5 px-3 text-sm rounded-md transition duration-300 shadow-sm hover:shadow-md focus:outline-none focus:ring-2 focus:ring-primary-300">
+          Select Files
+        </button>
+      </div>
+
+      <!-- Processing Status -->
+      <div
+        id="file-list"
+        class="space-y-3 max-h-[250px] overflow-y-auto pr-1"></div>
+
+      <!-- Footer - More compact -->
+      <div class="mt-4 text-center text-xs text-gray-500">
+        Converts MP4 videos to WebM for better web compatibility
+      </div>
+
+      <!-- Attribution -->
+      <div class="mt-3 pt-2 border-t border-gray-200 text-center">
+        <h4 class="text-xs font-medium text-gray-600">
+          Made by a broke college student
+        </h4>
+        <a
+          href="https://www.headspaceandtiming.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-xs text-primary-500 hover:text-primary-700 transition-colors mt-1 inline-block">
+          Visit my website
+        </a>
+      </div>
+    </div>
+
+    <script src="main.js"></script>
+  </body>
+</html>
