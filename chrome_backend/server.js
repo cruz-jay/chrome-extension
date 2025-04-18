@@ -8,21 +8,17 @@ const fs = require("fs");
 const app = express();
 const PORT = 32300;
 
-// Enable CORS for all routes
 app.use(cors());
 app.use(express.json());
 
-// Ensure upload and processed directories exist
 const uploadDir = path.join(__dirname, "uploads");
 const processedDir = path.join(__dirname, "processed");
 if (!fs.existsSync(uploadDir)) fs.mkdirSync(uploadDir);
 if (!fs.existsSync(processedDir)) fs.mkdirSync(processedDir);
 
-// Multer setup for handling file uploads
 const storage = multer.diskStorage({
   destination: uploadDir,
   filename: (req, file, cb) => {
-    // Use original filename with timestamp to avoid conflicts
     const uniqueName = `${Date.now()}-${file.originalname}`;
     cb(null, uniqueName);
   },
@@ -31,11 +27,10 @@ const storage = multer.diskStorage({
 const upload = multer({
   storage,
   limits: {
-    fileSize: 1024 * 1024 * 200, // 200MB limit
+    fileSize: 1024 * 1024 * 200, // ??
   },
 });
 
-// Endpoint to handle file upload
 app.post("/upload", upload.single("file"), (req, res) => {
   if (!req.file) {
     return res.status(400).json({ error: "No file uploaded" });
@@ -51,7 +46,7 @@ app.post("/upload", upload.single("file"), (req, res) => {
   console.log("Input:", inputFile);
   console.log("Output:", outputFile);
 
-  // Run FFmpeg command to convert the file
+  // COMMAND
   exec(
     `ffmpeg -i "${inputFile}" -c:v libvpx -b:v 1M -c:a libvorbis "${outputFile}"`,
     (error, stdout, stderr) => {
@@ -76,7 +71,6 @@ app.post("/upload", upload.single("file"), (req, res) => {
   );
 });
 
-// Endpoint to serve processed files
 app.get("/download/:filename", (req, res) => {
   const filePath = path.join(processedDir, req.params.filename);
 
@@ -91,6 +85,5 @@ app.get("/download/:filename", (req, res) => {
 
 app.listen(PORT, () => {
   console.log(`Server running at http://localhost:${PORT}`);
-  console.log(`Upload directory: ${uploadDir}`);
   console.log(`Processed directory: ${processedDir}`);
 });
